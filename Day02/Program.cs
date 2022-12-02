@@ -38,6 +38,7 @@
             myPlay;
         }
 
+        //11841
         Console.WriteLine(score);
       }
 
@@ -70,6 +71,7 @@
             myPlay;
         }
 
+        //13022
         Console.WriteLine(score);
       }
     }

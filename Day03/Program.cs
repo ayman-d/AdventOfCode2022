@@ -2,10 +2,6 @@
 {
   internal class Program
   {
-    private const int GROUP_SIZE = 3;
-    private const int CAPS_SUBTRACTOR = 38;
-    private const int NON_CAPS_SUBTRACTOR = 96;
-
     static void Main()
     {
       string input = File.ReadAllText("../../../input.txt");
@@ -19,13 +15,14 @@
         List<int> duplicatePriorities = new();
         List<char> duplicateChars = new();
 
-        foreach (var rucksack in rucksacks)
+        for (int i = 0; i < rucksacks.Length; i++)
         {
-          var compartment1 = rucksack.Take(rucksack.Length / 2);
-          var compartment2 = rucksack.Skip(rucksack.Length / 2);
+          var currentRucksack = rucksacks[i];
+          var compartment1 = currentRucksack.Take(currentRucksack.Length / 2);
+          var compartment2 = currentRucksack.Skip(currentRucksack.Length / 2);
 
           char duplicate = compartment1.Where(x => compartment2.Contains(x)).FirstOrDefault();
-          int priority = duplicate - (char.IsUpper(duplicate) ? CAPS_SUBTRACTOR : NON_CAPS_SUBTRACTOR);
+          int priority = duplicate - (char.IsUpper(duplicate) ? 38 : 96);
 
           duplicateChars.Add(duplicate);
           duplicatePriorities.Add(priority);
@@ -41,12 +38,12 @@
         List<int> duplicatePriorities = new();
         List<char> duplicateChars = new();
 
-        for (int i = 0; i < rucksacks.Length; i += GROUP_SIZE)
+        for (int i = 0; i < rucksacks.Length; i += 3)
         {
           char duplicate = rucksacks[i]
-                              .Where(x => rucksacks[i + 1].Contains(x) && rucksacks[i + 2].Contains(x))
-                              .FirstOrDefault();
-          int priority = duplicate - (char.IsUpper(duplicate) ? CAPS_SUBTRACTOR : NON_CAPS_SUBTRACTOR);
+                            .Where(x => rucksacks[i + 1].Contains(x) && rucksacks[i + 2].Contains(x))
+                            .FirstOrDefault();
+          int priority = duplicate - (char.IsUpper(duplicate) ? 38 : 96);
 
           duplicateChars.Add(duplicate);
           duplicatePriorities.Add(priority);

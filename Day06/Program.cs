@@ -11,12 +11,34 @@
 
       void SolveProblemA()
       {
-        Console.WriteLine("hi A");
+        for (int i = 4; i < input.Length; i++)
+        {
+          string listOfFour = input.Substring(i-3,4);
+          var isUnique = listOfFour.ToCharArray().Distinct().Count() == 4;
+
+          if (isUnique)
+          {
+            //1779
+            Console.WriteLine(i+1);
+            break;
+          }
+        }
       }
 
       void SolveProblemB()
       {
-        Console.WriteLine("hi B");
+        for (int i = 14; i < input.Length; i++)
+        {
+          string listOfFour = input.Substring(i - 13, 14);
+          var isUnique = listOfFour.ToCharArray().Distinct().Count() == 14;
+
+          if (isUnique)
+          {
+            //2635
+            Console.WriteLine(i + 1);
+            break;
+          }
+        }
       }
     }
   }
